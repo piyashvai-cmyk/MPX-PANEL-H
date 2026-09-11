@@ -1,0 +1,6 @@
+{
+  "name": "MPX PANEL",
+  "description": "MPX PANEL - VIP Gaming Injector & Management System with License Key Authentication, Admin Panel, and Floating Mod Menu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

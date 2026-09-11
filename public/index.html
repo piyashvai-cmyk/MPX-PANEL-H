@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPX PANEL - Official Download Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0D0F14;
+      --card-bg: #151821;
+      --card-elevated: #1C202C;
+      --accent-red: #E50914;
+      --accent-gold: #FFD700;
+      --accent-cyan: #00E5FF;
+      --accent-green: #00FF66;
+      --text-main: #FFFFFF;
+      --text-muted: #8E9BAE;
+      --border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 24px 16px;
+    }
+
+    /* Ambient Cyber Glow Backgrounds */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(229, 9, 20, 0.25) 0%, rgba(0, 229, 255, 0.08) 60%, transparent 80%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 580px;
+      width: 100%;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+      filter: blur(14px);
+      opacity: 0.8;
+      animation: pulse 3s infinite alternate;
+    }
+
+    .app-logo {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-red);
+      background-color: #000;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #FFFFFF 0%, #D8D8D8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 255, 102, 0.1);
+      border: 1px solid rgba(0, 255, 102, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      margin-bottom: 36px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: blink 1.6s infinite;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .download-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .download-card.user-card {
+      border-top: 3px solid var(--accent-cyan);
+    }
+
+    .download-card.admin-card {
+      border-top: 3px solid var(--accent-gold);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .user-card .card-title {
+      color: var(--accent-cyan);
+    }
+
+    .admin-card .card-title {
+      color: var(--accent-gold);
+    }
+
+    .version-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--card-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(0, 180, 216, 0.35);
+    }
+
+    .btn-cyan:hover {
+      box-shadow: 0 6px 26px rgba(0, 180, 216, 0.55);
+      filter: brightness(1.1);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #FFB703 0%, #FB8500 100%);
+      color: #0D0F14;
+      box-shadow: 0 4px 20px rgba(255, 183, 3, 0.35);
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 6px 26px rgba(255, 183, 3, 0.55);
+      filter: brightness(1.1);
+    }
+
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .feature-item {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-item::before {
+      content: "•";
+      color: var(--accent-cyan);
+    }
+
+    .admin-card .feature-item::before {
+      color: var(--accent-gold);
+    }
+
+    /* Footer Social Links */
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--text-main);
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: #555E6D;
+      margin-top: 24px;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 0.9; transform: scale(1.02); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- App Logo -->
+    <div class="logo-container">
+      <div class="logo-glow"></div>
+      <img src="https://i.ibb.co.com/SXRwYf6R/1789132953b6e4.png" alt="MPX PANEL Logo" class="app-logo">
+    </div>
+
+    <!-- App Title & Tagline -->
+    <h1>MPX PANEL</h1>
+    <p class="subtitle">Next-Gen Android Utility & Mod Assistant</p>
+
+    <!-- System Status -->
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      <span>OFFICIAL SERVER CLOUD ONLINE • V5.2</span>
+    </div>
+
+    <!-- Download Grid -->
+    <div class="cards-grid">
+      <!-- User Panel Card -->
+      <div class="download-card user-card">
+        <div class="card-header">
+          <span class="card-title">📱 MPX USER PANEL</span>
+          <span class="version-tag">v5.2 CLIENT</span>
+        </div>
+        <p class="card-description">
+          Client panel featuring Aimbot precision, ESP overlays, device optimizer, and floating snowflake menu.
+        </p>
+        <div class="features-list">
+          <span class="feature-item">Instant Key Activation</span>
+          <span class="feature-item">Floating Menu</span>
+          <span class="feature-item">Device HWID Lock</span>
+        </div>
+        <a href="/downloads/mpx-panel-user.apk" download class="btn btn-cyan">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          DOWNLOAD USER PANEL (APK)
+        </a>
+      </div>
+
+      <!-- Admin Panel Card -->
+      <div class="download-card admin-card">
+        <div class="card-header">
+          <span class="card-title">⚡ MPX ADMIN PANEL</span>
+          <span class="version-tag">ADMIN SUITE</span>
+        </div>
+        <p class="card-description">
+          Complete administration tool. Generate keys (Minutes, Hours, Days, Lifetime), set device limits, ban users, and broadcast announcements.
+        </p>
+        <div class="features-list">
+          <span class="feature-item">Custom Key Generator</span>
+          <span class="feature-item">User Device Ban</span>
+          <span class="feature-item">Force Updates</span>
+        </div>
+        <a href="/downloads/mpx-panel-admin.apk" download class="btn btn-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          DOWNLOAD ADMIN PANEL (APK)
+        </a>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="footer-links">
+      <a href="https://t.me/" target="_blank" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.538-.196 1.006.128.832.946z"/></svg>
+        Telegram Channel
+      </a>
+      <a href="https://chat.whatsapp.com/" target="_blank" class="footer-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 0C5.405 0 .022 5.383.022 12.009c0 2.115.553 4.182 1.606 6.007L0 24l6.167-1.617c1.761.96 3.746 1.467 5.864 1.467 6.626 0 12.009-5.383 12.009-12.01C24.04 5.383 18.657 0 12.031 0z"/></svg>
+        WhatsApp Support
+      </a>
+    </div>
+
+    <p class="footer-text">
+      © 2026 MPX PANEL. Engineered for high performance & military-grade security.
+    </p>
+  </div>
+</body>
+</html>

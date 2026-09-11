@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "license_keys": {
+      ".read": true,
+      "$key_id": {
+        ".write": "auth != null || (data.child('isActive').val() === true)"
+      }
+    },
+    "server_config": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "banned_devices": {
+      ".read": true,
+      ".write": "auth != null"
+    }
+  }
+}
