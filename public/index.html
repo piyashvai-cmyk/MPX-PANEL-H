@@ -347,7 +347,7 @@
           <span class="feature-item">Floating Menu</span>
           <span class="feature-item">Device HWID Lock</span>
         </div>
-        <a href="/downloads/mpx-panel-user.apk" download="MPX_User_Panel.apk" onclick="handleDownload(event, '/downloads/mpx-panel-user.apk', '/mpx-user.apk', 'MPX_User_Panel.apk')" class="btn btn-cyan">
+        <a href="/downloads/mpx-panel-user.apk" download="mpx-panel-user.apk" class="btn btn-cyan">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           DOWNLOAD USER PANEL (APK)
         </a>
@@ -367,7 +367,7 @@
           <span class="feature-item">User Device Ban</span>
           <span class="feature-item">Force Updates</span>
         </div>
-        <a href="/downloads/mpx-panel-admin.apk" download="MPX_Admin_Panel.apk" onclick="handleDownload(event, '/downloads/mpx-panel-admin.apk', '/mpx-admin.apk', 'MPX_Admin_Panel.apk')" class="btn btn-gold">
+        <a href="/downloads/mpx-panel-admin.apk" download="mpx-panel-admin.apk" class="btn btn-gold">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           DOWNLOAD ADMIN PANEL (APK)
         </a>
@@ -392,21 +392,7 @@
   </div>
 
   <script>
-    function handleDownload(e, primaryUrl, fallbackUrl, filename) {
-      e.preventDefault();
-      // Try trigger download via invisible anchor with direct location fallback
-      const link = document.createElement('a');
-      link.href = primaryUrl;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // Fallback navigation after 400ms if not triggered
-      setTimeout(function() {
-        window.location.href = primaryUrl;
-      }, 400);
-    }
+    console.log("MPX Panel Portal Ready");
   </script>
 </body>
 </html>
